@@ -1,0 +1,15 @@
+/*  Colors, spacing, theme constants */
+
+:root {
+    --font-main: 'Poppins', sans-serif;
+    --soft-primary: #84D187;
+    --hard-primary: #2C742F;
+    --bg-black: #333333;
+    --primary: #00B207;
+    --warning: #FF8A00;
+    --danger: #EA4B48;
+    --white: #FFFFFF;
+    --bg-white: #F7F7F7;
+    --container-padding: 0rem 18.75rem 0rem 18.75rem;
+    --debug: 1px solid black;
+}

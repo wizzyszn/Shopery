@@ -1,0 +1,12 @@
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 11.438rem;
+    height: 2.375rem;
+}
+
+.logo>h3 {
+    font-size: 32px;
+    font-weight: 500;
+}

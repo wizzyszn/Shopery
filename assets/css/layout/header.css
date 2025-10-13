@@ -1,0 +1,83 @@
+ /* Header and navbar layout */
+ .header-section {
+     padding: var(--container-padding);
+     border: 1px rgba(128, 128, 128, 0.719) solid;
+     min-height: 5.813rem;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+ }
+
+ input[type='search'] {
+     width: 400px;
+     height: 45px;
+
+
+ }
+
+ .search-bar {
+     display: flex;
+ }
+
+ .search-bar>button {
+     width: 98px;
+     background-color: var(--primary);
+     border: none;
+     color: var(--white);
+     border-radius: 0px 8px 8px 0px;
+ }
+
+ .nav-links-container {
+     height: 3.75rem;
+     padding: var(--container-padding);
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+ }
+
+ .nav-links {
+     display: flex;
+     gap: 2rem;
+ }
+
+ .nav-links>a {
+     color: #666666;
+     text-decoration: none;
+ }
+
+ .phone-container {
+     display: flex;
+     gap: 4px;
+     align-items: center;
+     font-weight: medium;
+ }
+
+ .bread-crumbs-container {
+     background-image: url('../../images/icons/Breadcrumbs.png');
+     height: 7.5rem;
+     display: flex;
+     align-items: center;
+ }
+
+ .breadcrumb {
+     font-size: 14px;
+     background-color: inherit;
+ }
+
+ .breadcrumb a {
+     color: var(--primary);
+     text-decoration: none;
+ }
+
+ .breadcrumb a:hover {
+     text-decoration: underline;
+ }
+
+ .breadcrumb .separator {
+     color: #999999;
+     margin: 0 5px;
+ }
+
+ .breadcrumb .current {
+     color: #999999;
+ }
