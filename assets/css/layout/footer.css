@@ -1,14 +1,13 @@
 /* Footer layout */
 
-footer {
-    padding: var(--container-padding);
-    background-color: var(--bg-white);
-}
+
 
 .newsletter-container {
     display: flex;
     height: 162px;
     align-items: center;
+    padding: var(--container-padding);
+    background-color: var(--bg-white);
 }
 
 .newsletter-heading-container {
@@ -65,4 +64,99 @@ footer {
     transform: translateY(-50%);
     cursor: pointer;
     transition: background-color 0.2s ease;
+}
+
+.footer-navlinks-container {
+    background-color: #1a1a1a;
+    color: var(--bg-white);
+    padding: var(--container-padding);
+    height: 23rem;
+    display: flex;
+    align-items: center;
+}
+
+.footer-navlinks-heading {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.footer-navlinks-heading>h5 {
+    color: #808080;
+    font-size: 0.875rem;
+    width: 50%;
+    font-weight: 400;
+}
+
+.footer-navlinks-heading>div {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.footer-navlinks-heading>div>p {
+    font-weight: 500;
+    font-size: 0.875rem;
+    position: relative;
+
+}
+
+.footer-navlinks-heading>div>p::after {
+    content: '';
+    height: 2px;
+    width: 100%;
+    background-color: var(--primary);
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+}
+
+.footer-navlinks-heading>div>span {
+    color: #808080;
+}
+
+.footer-navlinks {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.footer-navlinks>div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-navlinks>h4 {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.footer-navlinks>div>div {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+}
+
+.footer-navlinks>div>div>a {
+    text-decoration: none;
+    color: #808080;
+    font-size: 14px;
+}
+
+.rights-reserved {
+    padding: var(--container-padding);
+    background-color: #1a1a1a;
+    color: var(--bg-white);
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #80808017;
+}
+.rights-reserved p{
+    margin: 0px;
+    font-size: 14px;
+    color: #808080;
 }

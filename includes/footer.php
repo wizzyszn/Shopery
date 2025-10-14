@@ -1,3 +1,88 @@
+<?php
+$footer_navlinks = [
+    [
+        'title' => "My Account",
+        'links' => [
+            [
+                'title' => "Order History",
+                'url' => "#"
+            ],
+            [
+                'title' => "Shoping Cart",
+                'url' => "#"
+            ],
+            [
+                'title' => "Wishlist",
+                'url' => "#"
+            ],
+        ]
+    ],
+    [
+        'title' => "Helps",
+        'links' => [
+            [
+                'title' => "Contact",
+                'url' => "#"
+            ],
+            [
+                'title' => "Faqs",
+                'url' => "#"
+            ],
+            [
+                'title' => "Terms & Condition",
+                'url' => "#"
+            ],
+            [
+                'title' => "Privacy Policy",
+                'url' => "#"
+            ]
+        ]
+    ],
+    [
+        'title' => "Proxy",
+        'links' => [
+            [
+                'title' => "About",
+                'url' => "#"
+            ],
+            [
+                'title' => "Shop",
+                'url' => "#"
+            ],
+            [
+                'title' => "Product",
+                'url' => "#"
+            ],
+            [
+                'title' => "Track Order",
+                'url' => "#"
+            ]
+        ]
+    ],
+    [
+        'title' => "Categories",
+        'links' => [
+            [
+                'title' => "Fruit & Vegetables",
+                'url' => "#"
+            ],
+            [
+                'title' => "Meat & Fish",
+                'url' => "#"
+            ],
+            [
+                'title' => "Bread & Bakery",
+                'url' => "#"
+            ],
+            [
+                'title' => "Beauty & Health",
+                'url' => "#"
+            ]
+        ]
+    ],
+]
+?>
+
 <footer>
     <div class="newsletter-container">
         <div class="newsletter-heading-container">
@@ -32,11 +117,45 @@
                         </clipPath>
                     </defs>
                 </svg>
-                <!-- footer links goes -->
             </div>
         </div>
     </div>
-    <div></div>
+    <div class="footer-navlinks-container">
+        <div class="footer-navlinks-heading">
+            <?php include "logo.php" ?>
+            <h5>Morbi cursus porttitor enim lobortis molestie. Duis gravida turpis dui, eget bibendum magna congue nec.</h5>
+            <div>
+                <p>(219) 555-0114</p>
+                <span>or</span>
+                <p>Proxy@gmail.com</p>
+            </div>
+
+        </div>
+        <div class="footer-navlinks">
+            <?php foreach ($footer_navlinks as $navlink): ?>
+                <div>
+                    <h4><?php echo htmlspecialchars($navlink["title"]) ?></h4>
+                    <div>
+                        <?php foreach ($navlink["links"] as $link): ?>
+                            <a href='<?php echo htmlspecialchars($link["url"]) ?>'>
+                                <?php echo htmlspecialchars($link["title"]) ?>
+                            </a>
+                        <?php endforeach ?>
+                    </div>
+                </div>
+            <?php endforeach ?>
+        </div>
+    </div>
+    <div class="rights-reserved">
+        <p>Ecobazar eCommerce © 2021. All Rights Reserved</p>
+        <div>
+            <img src="/Shopery/assets/images/icons/Cart.png" alt="Cart icon">
+            <img src="/Shopery/assets/images/icons/Method=ApplePay.png" alt="Cart icon">
+            <img src="/Shopery/assets/images/icons/Method=Discover.png" alt="Cart icon">
+            <img src="/Shopery/assets/images/icons/Method=Mastercard.png" alt="Cart icon">
+            <img src="/Shopery/assets/images/icons/Method=Visa.png" alt="Cart icon">
+        </div>
+    </div>
 </footer>
 </body>
 
