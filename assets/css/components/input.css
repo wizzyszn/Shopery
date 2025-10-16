@@ -1,0 +1,7 @@
+.input-danger {
+    border: 1px solid var(--danger);
+}
+
+.error-response {
+    color: var(--danger);
+}
