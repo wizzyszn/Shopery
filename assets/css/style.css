@@ -23,6 +23,7 @@
 @import url('pages/product.css');
 @import url('pages/cart.css');
 @import url('pages/auth/login.css');
+@import url('pages/auth/register.css');
 @import url('pages/checkout.css');
 
 /* ===== Utilities ===== */
