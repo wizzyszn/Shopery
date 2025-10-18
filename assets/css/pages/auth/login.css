@@ -4,11 +4,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 20px 0px;
 }
 
 .sign-in-form>form {
     width: 32.5rem;
-    height: 23.188rem;
+    min-height: 23.188rem;
     border: 1px solid #F2F2F2;
     background-color: #FFFFFF;
     border-radius: 8px;
@@ -27,23 +28,9 @@
     flex-direction: column;
     justify-content: center;
     gap: 8px;
-
 }
 
-.input-container {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.input-container>input {
-    height: 23px;
-    padding: 16px 14px;
-    border-radius: 6px;
-    border: 1px solid #E6E6E6;
-
-}
-
+/* Login-specific: Remember me container */
 .rememberme-container {
     display: flex;
     justify-content: space-between;
@@ -56,8 +43,6 @@
     display: flex;
     align-items: center;
     gap: 4px;
-
-
 }
 
 .rememberme-container>div>input {

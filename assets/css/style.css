@@ -18,6 +18,7 @@
 @import url('components/logo.css');
 @import url('components/cart-overview.css');
 @import url('components/input.css');
+@import url('components/alerts.css');
 /* ===== Pages ===== */
 @import url('pages/home.css');
 @import url('pages/product.css');

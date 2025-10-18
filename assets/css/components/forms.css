@@ -1,1 +1,55 @@
 /*Input fields, forms, modals*/
+
+/* Form input containers */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Form error messages */
+.error-message {
+    display: block;
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 6px;
+}
+
+/* Help text */
+.help-text {
+    display: block;
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-top: 6px;
+}
+
+/* Required field indicator */
+.required {
+    color: #dc3545;
+}
+
+/* Form action buttons container */
+.form-actions {
+    margin-top: 20px;
+ 
+}
+
+/* Form footer with links */
+.form-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.form-footer p {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.form-footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}

@@ -11,4 +11,31 @@
     padding: 16px 14px;
     border-radius: 6px;
     border: 1px solid #E6E6E6;
+
+}
+
+.password-field-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-field-wrapper>input {
+    width: 100%;
+    padding-right: 40px;
+    /* Make room for the icon */
+}
+
+.password-field-wrapper>svg {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+.password-field-wrapper .hidden {
+    display: none;
 }

@@ -3,15 +3,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 30px 0px;
 }
 
 .register-form>form {
-    width: 32.5rem;
+    width: 35.5rem;
     min-height: 27rem;
     border: 1px solid #F2F2F2;
     border-radius: 8px;
     box-shadow: 0px 0px 20px #0026031c;
-    padding: 24px; 
+    padding: 24px;
 }
 
 .register-form>form>h1 {
@@ -19,13 +20,101 @@
     font-weight: 600;
 }
 
-.register-form>form>div{
+.register-form>form>div {
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
-.input-container {
+
+/* Register-specific: Password strength indicator */
+.password-requirements {
+    margin-top: 8px;
+    padding: 12px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+}
+
+.requirement-title {
+    display: block;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+    font-size: 0.875rem;
+}
+
+.requirement-list {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
+}
+
+.requirement {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: #6c757d;
+    transition: all 0.2s ease;
+}
+
+.req-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.requirement.valid {
+    color: #28a745;
+}
+
+.requirement.valid .req-icon {
+    color: #28a745;
+}
+
+.requirement.invalid {
+    color: #dc3545;
+}
+
+.requirement.invalid .req-icon {
+    color: #dc3545;
+}
+
+/* Register-specific: Password match indicator */
+.password-match-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.password-match-indicator.match {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.password-match-indicator.mismatch {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.match-icon {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.match-text {
+    flex: 1;
 }
