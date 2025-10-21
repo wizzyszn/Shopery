@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $config_file = __DIR__ . "/../config/config.php";
 if (file_exists($config_file)) {
     require_once $config_file;

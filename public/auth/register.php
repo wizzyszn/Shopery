@@ -3,6 +3,7 @@
 require_once __DIR__ . "/../shared/components/button.php";
 require_once __DIR__ . "/../shared/components/input.php";
 require_once __DIR__ . "/../../config/config.php";
+require_once __DIR__ . "/../../config/db.php";
 
 //Custom pre-rendered assinged style variables
 $body_classes = ["nav-theme-dark"];
@@ -67,12 +68,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // If no errors, process registration
     if (empty($errors)) {
-        // TODO: Add database logic here to register the user
-        // Hash password: password_hash($password, PASSWORD_DEFAULT)
-        $success = "Registration successful! You can now login.";
-        // Redirect to login page after successful registration
-        // header("Location: " . BASE_URL . "/auth/login.php");
-        // exit();
+        // Check if the user exists in the DB
+        $stmt = $pdo->prepare("SELECT id FROM User WHERE email = ?");
+        $stmt->execute([$email]);
+        if (!empty($stmt->fetch())) {
+            $errors["auth_err"] = "Email already exists";
+        } else {
+            // Hash password and insert user
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $pdo->prepare("INSERT INTO User (first_name, last_name, email, password) VALUES (?, ?, ?, ?)");
+
+            if ($stmt->execute([$fname, $lname, $email, $hashed_password])) {
+                $success = "Registration successful! You can now login.";
+                // Redirect to login page after successful registration
+                // header("Location: " . BASE_URL . "/auth/login.php");
+                // exit();
+            } else {
+                $errors["auth_err"] = "Registration failed. Please try again.";
+            }
+        }
     }
 }
 
