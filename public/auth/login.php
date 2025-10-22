@@ -4,7 +4,7 @@
 require_once __DIR__ . "/../shared/components/button.php";
 require_once __DIR__ . "/../shared/components/input.php";
 require_once __DIR__ . '/../../config/config.php';
-
+require_once __DIR__ . '/../../config/db.php';
 //Custom pre-rendered assinged style variables
 $body_classes = ["nav-theme-dark"];
 $body_class = implode(' ', array_filter($body_classes));
@@ -12,6 +12,7 @@ $body_class = implode(' ', array_filter($body_classes));
 // Set server States
 $errors = [];
 $success = "";
+$redirect = false;
 // Server-side validation on form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     //Sanitize inputs
@@ -32,16 +33,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if (empty($errors)) {
-        // TODO: Add database logic here to verify user credentials
-        // Example: Check email exists and verify password using password_verify($password, $hashed_password_from_db)
 
-        $errors['credentials'] = "Invalid email or password";
-
-        // When database is connected, on successful login:
-        // $_SESSION['user_id'] = $user['id'];
-        // $_SESSION['user_email'] = $user['email'];
-        // header("Location: " . BASE_URL . "/index.php");
-        // exit();
+        $stmt = $pdo->prepare("SELECT id,password,first_name,last_name,email FROM User WHERE email = ?");
+        $stmt->execute([$email]);
+        $user = $stmt->fetch();
+        if (!empty($user)) {
+            $hashed_password = $user["password"];
+            if (!password_verify($password, $hashed_password)) {
+                $errors['credentials'] = "Invalid email or password";
+                exit();
+            }
+            $_SESSION["user_id"] = $user["id"];
+            $_SESSION["user_email"] = $user["email"];
+            $_SESSION["user_fname"] = $user["first_name"];
+            $_SESSION["user_lname"] = $user["last_name"];
+            $success = "Login Successful";
+            $redirect = true;
+        } else {
+            $errors['credentials'] = "Invalid email or password";
+        }
     }
 }
 
@@ -97,7 +107,19 @@ if (file_exists($header)) {
 
         <?php if ($success): ?>
             <div class="alert alert-success">
-                <?php echo htmlspecialchars($success, ENT_QUOTES, 'UTF-8') ?>
+                <div class="success-content">
+                    <svg class="success-icon" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="3" fill="none" />
+                        <path d="M14 24L20 30L34 16" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <h3 class="success-title"><?php echo htmlspecialchars($success, ENT_QUOTES, 'UTF-8') ?></h3>
+                    <?php if (isset($redirect) && $redirect): ?>
+                        <p class="redirect-text">Taking you to your dashboard...</p>
+                        <div class="spinner-container">
+                            <?php require __DIR__ . '/../shared/components/spinner.php'; ?>
+                        </div>
+                    <?php endif ?>
+                </div>
             </div>
         <?php endif ?>
 
@@ -153,6 +175,13 @@ if (file_exists($header)) {
         </div>
     </form>
 </div>
+<?php if (isset($redirect) && $redirect): ?>
+    <script>
+        setTimeout(function() {
+            window.location.href = '<?php echo BASE_URL; ?>/public/index.php';
+        }, 3000);
+    </script>
+<?php endif ?>
 
 <?php
 $footer = __DIR__ . '/../../includes/footer.php';

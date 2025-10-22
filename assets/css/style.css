@@ -19,6 +19,7 @@
 @import url('components/cart-overview.css');
 @import url('components/input.css');
 @import url('components/alerts.css');
+@import url('components/spinner.css');
 /* ===== Pages ===== */
 @import url('pages/home.css');
 @import url('pages/product.css');

@@ -13,6 +13,58 @@
     border: 1px solid #c3e6cb;
 }
 
+/* Enhanced success alert with redirect */
+.alert-success .success-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+    justify-content: center;
+}
+
+.alert-success .success-icon {
+    color: var(--primary);
+    animation: scaleIn 0.5s ease-out;
+}
+
+.alert-success .success-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--hard-primary);
+}
+
+.alert-success .redirect-text {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--txt-secondary);
+    font-weight: 400;
+}
+
+.alert-success .spinner-container {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 .alert-danger {
     background-color: #f8d7da;
     color: #721c24;

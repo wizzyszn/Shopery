@@ -79,10 +79,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt = $pdo->prepare("INSERT INTO User (first_name, last_name, email, password) VALUES (?, ?, ?, ?)");
 
             if ($stmt->execute([$fname, $lname, $email, $hashed_password])) {
-                $success = "Registration successful! You can now login.";
-                // Redirect to login page after successful registration
-                // header("Location: " . BASE_URL . "/auth/login.php");
-                // exit();
+                $success = "Registration successful! Redirecting to login page...";
+                $redirect = true;
             } else {
                 $errors["auth_err"] = "Registration failed. Please try again.";
             }
@@ -167,6 +165,12 @@ if (file_exists($header)) {
         <?php if ($success): ?>
             <div class="alert alert-success">
                 <?php echo htmlspecialchars($success, ENT_QUOTES, 'UTF-8'); ?>
+                <?php if (isset($redirect) && $redirect): ?>
+                    <p style="margin-top: 10px;">
+                        Redirecting in <strong id="countdown">5</strong> seconds...
+                        or <a href="<?php echo BASE_URL; ?>/public/auth/login.php" style="text-decoration: underline;">click here to login now</a>
+                    </p>
+                <?php endif; ?>
             </div>
         <?php endif; ?>
 
@@ -428,6 +432,25 @@ if (file_exists($header)) {
         }
     });
 </script>
+
+<?php if (isset($redirect) && $redirect): ?>
+    <script>
+        let timeLeft = 5;
+        const countdownElement = document.getElementById('countdown');
+
+        const countdownTimer = setInterval(function() {
+            timeLeft--;
+            if (countdownElement) {
+                countdownElement.textContent = timeLeft;
+            }
+
+            if (timeLeft <= 0) {
+                clearInterval(countdownTimer);
+                window.location.href = '<?php echo BASE_URL; ?>/public/auth/login.php';
+            }
+        }, 1000);
+    </script>
+<?php endif; ?>
 
 <?php
 $footer = __DIR__ . '/../../includes/footer.php';
