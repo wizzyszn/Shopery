@@ -1,0 +1,15 @@
+-- CREATE TABLE User(
+-- id INT AUTO_INCREMENT PRIMARY KEY,
+-- first_name VARCHAR(100) NOT NULL,
+-- last_name VARCHAR(100) NOT NULL,
+-- password VARCHAR(255) NOT NULL,
+-- phone VARCHAR(20),
+-- address VARCHAR(255),
+-- city VARCHAR(100),
+-- postal_code VARCHAR(20),
+-- country VARCHAR(50) DEFAULT "NIGERIA",
+-- created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );
+-- USE SHOPERY;
+-- ALTER TABLE User 
+-- ADD COLUMN email VARCHAR(100) NOT NULL UNIQUE AFTER last_name;

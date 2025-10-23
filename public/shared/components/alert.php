@@ -1,19 +1,17 @@
 <?php
 
-class Alert 
+class Alert
 {
     private $type;
     private $content;
     private $attributes;
 
-
     public function __construct($type = "success", $content = "", $attributes = [])
     {
-        $this->type = $this->setType($type);
+        $this->type = $type;
+        $this->content = $content;
         $this->attributes = $attributes;
-        $this->content = $this->setContent($content);
     }
-
 
     public function setType($type)
     {
@@ -33,8 +31,28 @@ class Alert
         return $this;
     }
 
+    private function buildAttributes()
+    {
+        if (empty($this->attributes)) {
+            return '';
+        }
+
+        $attrString = '';
+        foreach ($this->attributes as $key => $value) {
+            $attrString .= ' ' . htmlspecialchars($key) . '="' . htmlspecialchars($value) . '"';
+        }
+        return $attrString;
+    }
+
     public function render()
     {
-        return "";
+        $attributes = $this->buildAttributes();
+        $alertClass = 'alert alert-' . htmlspecialchars($this->type);
+
+        $html = "<div class='{$alertClass}'{$attributes}>";
+        $html .= htmlspecialchars($this->content);
+        $html .= "</div>";
+
+        return $html;
     }
 }

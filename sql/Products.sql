@@ -1,0 +1,12 @@
+CREATE TABLE Products(
+id INT AUTO_INCREMENT PRIMARY KEY,
+category_id INT,
+name VARCHAR(50) NOT NULL,
+description TEXT,
+price DECIMAL(10,2) NOT NULL,
+stock INT DEFAULT 0,
+image_url VARCHAR(255),
+is_featured BOOLEAN DEFAULT 0,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (category_id) REFERENCES Categories(id) ON DELETE SET NULL
+);
