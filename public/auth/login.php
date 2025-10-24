@@ -4,7 +4,9 @@
 require_once __DIR__ . "/../shared/components/button.php";
 require_once __DIR__ . "/../shared/components/input.php";
 require_once __DIR__ . '/../../config/config.php';
+require_once __DIR__ . '/../shared/components/alert.php';
 require_once __DIR__ . '/../../config/db.php';
+require_once __DIR__ . '/../shared/components/breadcrumb.php';
 //Custom pre-rendered assinged style variables
 $body_classes = ["nav-theme-dark"];
 $body_class = implode(' ', array_filter($body_classes));
@@ -79,7 +81,10 @@ try {
         ->setAttribute("id", "password")
         ->setAttribute('autocomplete', 'current-password')
         ->setRequired();
-    // Note: No password complexity validation for login - users enter their existing password
+
+    // Initialize Alert Components
+    $alert_success = new Alert("success");
+    $alert_error = new Alert("danger");
 } catch (InvalidArgumentException $e) {
     error_log($e);
 }
@@ -106,34 +111,43 @@ if (file_exists($header)) {
         <h1>Sign In</h1>
 
         <?php if ($success): ?>
-            <div class="alert alert-success">
+            <?php
+            $successContent = '
                 <div class="success-content">
                     <svg class="success-icon" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="3" fill="none" />
                         <path d="M14 24L20 30L34 16" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    <h3 class="success-title"><?php echo htmlspecialchars($success, ENT_QUOTES, 'UTF-8') ?></h3>
-                    <?php if (isset($redirect) && $redirect): ?>
-                        <p class="redirect-text">Taking you to your dashboard...</p>
-                        <div class="spinner-container">
-                            <?php require __DIR__ . '/../shared/components/spinner.php'; ?>
-                        </div>
-                    <?php endif ?>
-                </div>
-            </div>
+                    <h3 class="success-title">' . htmlspecialchars($success, ENT_QUOTES, 'UTF-8') . '</h3>';
+
+            if (isset($redirect) && $redirect) {
+                $successContent .= '
+                    <p class="redirect-text">Taking you to your dashboard...</p>
+                    <div class="spinner-container">';
+                ob_start();
+                require __DIR__ . '/../shared/components/spinner.php';
+                $successContent .= ob_get_clean();
+                $successContent .= '
+                    </div>';
+            }
+
+            $successContent .= '
+                </div>';
+
+            echo $alert_success->setContent($successContent)->setAllowHtml(true)->render();
+            ?>
         <?php endif ?>
 
         <?php if (!empty($errors)): ?>
-            <div class="alert alert-danger">
-                <strong>Oops! There were some issues:</strong>
-                <ul>
-                    <?php foreach ($errors as $error): ?>
-                        <li>
-                            <?php echo htmlspecialchars($error, ENT_QUOTES, "UTF-8") ?>
-                        </li>
-                    <?php endforeach ?>
-                </ul>
-            </div>
+            <?php
+            $errorContent = '<strong>Oops! There were some issues:</strong><ul>';
+            foreach ($errors as $error) {
+                $errorContent .= '<li>' . htmlspecialchars($error, ENT_QUOTES, "UTF-8") . '</li>';
+            }
+            $errorContent .= '</ul>';
+
+            echo $alert_error->setContent($errorContent)->setAllowHtml(true)->render();
+            ?>
         <?php endif ?>
 
         <div>

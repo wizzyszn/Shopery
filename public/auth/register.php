@@ -2,6 +2,7 @@
 //Include Components, Configs, Libraries etc....
 require_once __DIR__ . "/../shared/components/button.php";
 require_once __DIR__ . "/../shared/components/input.php";
+require_once __DIR__ . '/../shared/components/breadcrumb.php';
 require_once __DIR__ . "/../../config/config.php";
 require_once __DIR__ . "/../../config/db.php";
 

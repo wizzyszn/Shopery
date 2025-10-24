@@ -1,1 +1,84 @@
-/* Homepage-specific styling*/
+/* Homepage-specific styling */
+
+.homepage-section {
+    padding: var(--container-padding);
+}
+
+.hero-section {
+    height: 47rem;
+    padding: 24px 0px;
+}
+
+.hero-cards {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 3fr 1fr;
+}
+
+.main-bannar {
+    position: relative;
+    color: var(--white);
+
+}
+
+.main-bannar>div {
+    position: absolute;
+    top: 155px;
+    left: 60px;
+}
+
+.main-bannar>div>h1 {
+    margin: 0px;
+    font-size: 48px;
+    font-weight: 600;
+    width: 80%;
+    line-height: 60px;
+}
+
+.main-bannar>div>div {
+    height: 67px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-top: 28px;
+    border-left: 2px solid var(--primary);
+    padding-left: 10px;
+}
+
+
+.main-bannar>div>div>h4 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.main-bannar>div>div>small {
+    font-size: 14px;
+    opacity: 0.6;
+    margin-top: 12px;
+}
+
+.main-bannar>div>div>h4>span {
+    background: #FF8A00;
+    padding: 4px 12px;
+    border-radius: 5px;
+}
+
+.main-bannar>div>button {
+    background-color: var(--white);
+    border: none;
+    color: var(--primary);
+    font-size: 16px;
+    font-weight: 600;
+    height: 51px;
+    width: 191px;
+    border-radius: 53px;
+    margin-top: 28px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;   
+}
+
+.main-bannar>div>button:hover{
+    cursor: pointer;
+}

@@ -5,12 +5,14 @@ class Alert
     private $type;
     private $content;
     private $attributes;
+    private $allowHtml; // security check to decide if html is should be escaped or rendered as is
 
     public function __construct($type = "success", $content = "", $attributes = [])
     {
         $this->type = $type;
         $this->content = $content;
         $this->attributes = $attributes;
+        $this->allowHtml = false;
     }
 
     public function setType($type)
@@ -28,6 +30,12 @@ class Alert
     public function setAttribute($key, $value)
     {
         $this->attributes[$key] = $value;
+        return $this;
+    }
+
+    public function setAllowHtml($allow = true)
+    {
+        $this->allowHtml = $allow;
         return $this;
     }
 
@@ -50,7 +58,7 @@ class Alert
         $alertClass = 'alert alert-' . htmlspecialchars($this->type);
 
         $html = "<div class='{$alertClass}'{$attributes}>";
-        $html .= htmlspecialchars($this->content);
+        $html .= $this->allowHtml ? $this->content : htmlspecialchars($this->content);
         $html .= "</div>";
 
         return $html;
